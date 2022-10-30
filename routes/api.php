@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\CompanyController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +14,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+
+Route::get('/', [CompanyController::class, 'index']);
+
+Route::get('/UF', [CompanyController::class, 'listUf']);
+
+Route::get('/cities', [CompanyController::class, 'listCities']);
+
+Route::get('/state-cities', [CompanyController::class, 'listStateCities']);
