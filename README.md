@@ -41,6 +41,12 @@ Criar as tabelas e informaçoes adicionais ao banco de dados.
   php artisan migrate --seed
   ```
   
+  Rodar o front do projeto
+* yarn
+  ```sh
+    yarn dev
+   ```
+ 
 Rodar o projeto
 * artisan
   ```sh
