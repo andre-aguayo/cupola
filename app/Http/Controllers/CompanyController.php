@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\EnumTypes\UFEnum;
 use App\Http\Controllers\Traits\ApiResponseTrait;
 use App\Http\Requests\SearchRequest;
+use App\Http\Requests\SendMailRequest;
+use App\Mail\Mail as TesTMail;
+use Illuminate\Support\Facades\Mail;
 use App\Services\CompanyServiceInterface;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules\Enum;
@@ -18,6 +21,17 @@ class CompanyController extends Controller
     }
 
     public function index(SearchRequest $request)
+    {
+        return $this->run(function () use ($request) {
+            return [
+                "companies" => $this->companyService->list($request->query()),
+                "UF" => $this->companyService->getValidUF(),
+                "cities" => $this->companyService->getValidCity()
+            ];
+        });
+    }
+
+    public function listCompanies(SearchRequest $request)
     {
         return $this->run(function () use ($request) {
             return $this->companyService->list($request->query());
@@ -48,6 +62,13 @@ class CompanyController extends Controller
             return $this->companyService->getValidStateCities(
                 UFEnum::from($request->query('UF'))
             );
+        });
+    }
+
+    public function sendMail(SendMailRequest $request)
+    {
+        return $this->run(function () use ($request) {
+            return  Mail::to($request->email)->send(new TestMail($request));;
         });
     }
 }

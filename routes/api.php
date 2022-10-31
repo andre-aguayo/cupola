@@ -18,7 +18,11 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
-Route::get('/', [CompanyController::class, 'index']);
+Route::post('/send-mail', [CompanyController::class, 'sendMail']);
+
+Route::get('/home', [CompanyController::class, 'index']);
+
+Route::get('/companies', [CompanyController::class, 'listCompanies']);
 
 Route::get('/UF', [CompanyController::class, 'listUf']);
 
