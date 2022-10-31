@@ -44,7 +44,7 @@ Criar as tabelas e informaçoes adicionais ao banco de dados.
 Rodar o projeto
 * artisan
   ```sh
-  yarn dev
+    php artisan serve
   ```
   
   <p align="right">(<a href="#top">back to top</a>)</p>
